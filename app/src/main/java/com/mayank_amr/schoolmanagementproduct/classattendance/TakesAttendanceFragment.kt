@@ -8,8 +8,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mayank_amr.schoolmanagementproduct.R
+import com.mayank_amr.schoolmanagementproduct.classattendance.attendancerecyclerview.AttendanceAdapter
 import kotlinx.android.synthetic.main.take_attendance_fragment.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -40,14 +43,14 @@ class TakesAttendanceFragment : Fragment(), KodeinAware, AdapterView.OnItemSelec
         viewModel = ViewModelProvider(this, factory).get(TakeAttendanceViewModel::class.java)
         // TODO: Use the ViewModel
 
-//        viewModel.getStudents()
-//        viewModel.students.observe(viewLifecycleOwner, Observer { students ->
-//            recycler_view_take_attendance.also {
-//                it.layoutManager = LinearLayoutManager(requireContext())
-//                it.setHasFixedSize(true)
-//                it.adapter = AttendanceAdapter(students)
-//            }
-//        })
+        //viewModel.getStudents()
+        viewModel.students.observe(viewLifecycleOwner, Observer { students ->
+            recycler_view_take_attendance.also {
+                it.layoutManager = LinearLayoutManager(requireContext())
+                it.setHasFixedSize(true)
+                it.adapter = AttendanceAdapter(students)
+            }
+        })
 
         /*------------------** Spinner **---------------------------------------------------------*/
         val languages = arrayOf("One", "Two", "Three", "Four", "Five", "Six")
