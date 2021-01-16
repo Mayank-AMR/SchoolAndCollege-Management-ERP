@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/notificatioMenuFragment"
+        android:icon="@drawable/ic_notification_bell"
+        android:title="@string/options_menu_notifications"
+        app:showAsAction="ifRoom" />
+
+    <!--    android:menuCategory="secondary" ->-->
+    <!--    This allows to comeback to that fragment where it started.-->
+    <item
+        android:icon="@drawable/ic_baseline_refresh"
+        android:menuCategory="secondary"
+        android:title="@string/options_menu_refresh"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/terms_and_condition_menu_item"
+        android:title="@string/options_menu_terms_and_conditions"
+        app:showAsAction="never" />
+</menu>

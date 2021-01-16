@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/homeFragment"
+            android:icon="@drawable/ic_baseline_home"
+            android:title="Home" />
+        <!--        <item-->
+        <!--            android:id="@+id/assignmentActivity"-->
+        <!--            android:icon="@drawable/ic_baseline_assignment"-->
+        <!--            android:title="Assignment" />-->
+        <item
+            android:id="@+id/eventsFragment"
+            android:icon="@drawable/ic_baseline_event"
+            android:title="@string/bottom_navigation_event"
+             />
+
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_baseline_image"
+            android:title="Gallery" />
+        <item
+            android:id="@+id/nav_admin"
+            android:icon="@drawable/ic_baseline_admin_panel_settings"
+            android:title="Admin" />
+        <item
+            android:id="@+id/action_homeFragment_to_navigation"
+            android:icon="@drawable/ic_baseline_assignment"
+            android:title="Assignment" />
+    </group>
+
+
+    <item android:title="@string/navigation_drawer_view_menu_profile">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/loginFragment"
+                    android:icon="@drawable/ic_baseline_login"
+                    android:title="@string/navigation_drawer_view_menu_login" />
+                <item
+                    android:id="@+id/studentProfileFragment"
+                    android:icon="@drawable/ic_baseline_supervisor_account"
+                    android:title="@string/navigation_drawer_view_menu_profile" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_baseline_reply"
+                    android:title="@string/navigation_drawer_view_menu_logout"
+                    />
+            </group>
+
+        </menu>
+    </item>
+
+    <item android:title="@string/navigation_drawer_view_menu_connect">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_about"
+                    android:icon="@drawable/ic_baseline_description"
+                    android:title="@string/navigation_drawer_view_menu_aboutus" />
+                <item
+                    android:id="@+id/nav_feedback"
+                    android:icon="@drawable/ic_baseline_feedback"
+                    android:title="@string/navigation_drawer_view_menu_feedback" />
+            </group>
+
+        </menu>
+    </item>
+
+</menu>

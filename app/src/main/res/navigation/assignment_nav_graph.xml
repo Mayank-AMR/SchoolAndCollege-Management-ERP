@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/assignment_nav_graph"
+    app:startDestination="@id/assignmentHomeFragment">
+
+    <fragment
+        android:id="@+id/newAssignmentFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.assignment.NewAssignmentFragment"
+        android:label="Create Assignment"
+        tools:layout="@layout/new_assignment_fragment" />
+    <fragment
+        android:id="@+id/assignmentHomeFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.assignment.AssignmentHomeFragment"
+        android:label="Assignments"
+        tools:layout="@layout/assignment_home_fragment">
+        <action
+            android:id="@+id/action_assignmentHomeFragment_to_newAssignmentFragment"
+            app:destination="@id/newAssignmentFragment" />
+        <action
+            android:id="@+id/action_assignmentHomeFragment_to_assignmentDetailFragment"
+            app:destination="@id/assignmentDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/submitAssignmentFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.assignment.SubmitAssignmentFragment"
+        android:label="Submit Assignment"
+        tools:layout="@layout/submit_assignment_fragment" />
+    <fragment
+        android:id="@+id/assignmentDetailFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.assignment.AssignmentDetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/assignment_detail_fragment">
+        <action
+            android:id="@+id/action_assignmentDetailFragment_to_submitAssignmentFragment"
+            app:destination="@id/submitAssignmentFragment" />
+    </fragment>
+</navigation>

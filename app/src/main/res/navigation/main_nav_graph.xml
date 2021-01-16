@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_navigation"
+            app:destination="@id/navigation" />
+        <action
+            android:id="@+id/action_homeFragment_to_takeAttendanceFragment"
+            app:destination="@id/takeAttendanceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificatioMenuFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.notification.NotificatioMenuFragment"
+        android:label="Notifications"
+        tools:layout="@layout/notificatio_menu_fragment" />
+    <fragment
+        android:id="@+id/termsAndConditionsFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.termsandconditions.TermsAndConditionsFragment"
+        android:label="Terms &amp; Conditions"
+        tools:layout="@layout/terms_and_conditions_fragment" />
+    <action
+        android:id="@+id/action_global_termsAndConditionsFragment"
+        app:destination="@id/termsAndConditionsFragment"
+        app:enterAnim="@anim/slide_in_top"
+        app:exitAnim="@anim/slide_out_bottom"
+        app:popEnterAnim="@anim/slide_in_bottom"
+        app:popExitAnim="@anim/slide_out_top" />
+    <fragment
+        android:id="@+id/feesFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.fees.FeesFragment"
+        android:label="Fees"
+        tools:layout="@layout/fees_fragment" />
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.events.EventsFragment"
+        android:label="Events"
+        tools:layout="@layout/events_fragment" />
+    <fragment
+        android:id="@+id/myClassesFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.studentsclasses.MyClassesFragment"
+        android:label="Class"
+        tools:layout="@layout/my_classes_fragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.authentication.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/login_fragment" />
+    <fragment
+        android:id="@+id/announcementsFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.announcements.AnnouncementsFragment"
+        android:label="Announcements"
+        tools:layout="@layout/announcements_fragment" />
+    <navigation
+        android:id="@+id/navigation"
+        app:startDestination="@id/assignment_nav_graph">
+        <include app:graph="@navigation/assignment_nav_graph" />
+    </navigation>
+    <fragment
+        android:id="@+id/takeAttendanceFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.classattendance.TakesAttendanceFragment"
+        android:label="Attendence"
+        tools:layout="@layout/take_attendance_fragment">
+        <action
+            android:id="@+id/action_takeAttendanceFragment_to_studentProfileFragment"
+            app:destination="@id/studentProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentProfileFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.profile.StudentProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/student_profile_fragment">
+        <action
+            android:id="@+id/action_studentProfileFragment_to_attendanceDetailFragment"
+            app:destination="@id/attendanceDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/attendanceDetailFragment"
+        android:name="com.mayank_amr.schoolmanagementproduct.profile.attendancedetail.AttendanceDetailFragment"
+        android:label="Attendance"
+        tools:layout="@layout/attendance_detail_fragment" />
+</navigation>

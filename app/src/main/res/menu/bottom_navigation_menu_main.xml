@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_baseline_home"
+        android:title="@string/bottom_navigation_home" />
+
+    <item
+        android:id="@+id/feesFragment"
+        android:icon="@drawable/ic_baseline_account_balance_wallet"
+        android:title="@string/bottom_navigation_fees" />
+    <item
+        android:id="@+id/myClassesFragment"
+        android:icon="@drawable/ic_baseline_menu_book"
+        android:title="@string/bottom_navigation_my_class" />
+
+    <item
+        android:id="@+id/announcementsFragment"
+        android:icon="@drawable/ic_baseline_assignment"
+        android:title="Announcements" />
+
+
+</menu>
