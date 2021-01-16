@@ -70,6 +70,17 @@
                     android:text="H" />
 
             </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="2dp"
+                android:text="A.D."
+                android:textColor="@color/design_default_color_primary"
+                android:textStyle="italic" />
+
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

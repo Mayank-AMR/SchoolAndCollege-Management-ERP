@@ -99,6 +99,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/materialCardViewHomeAssignments"
             app:layout_constraintTop_toTopOf="parent"
+            android:hint="Pending"
             tools:text="Pending" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

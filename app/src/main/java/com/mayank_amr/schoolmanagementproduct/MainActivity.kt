@@ -3,13 +3,13 @@ package com.mayank_amr.schoolmanagementproduct
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.*
-import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -47,6 +47,21 @@ class MainActivity : AppCompatActivity() /* , KodeinAware */ {
 
         bottomNavigationView.setupWithNavController(navController) // Connecting BottomNavigationView to navController
         navigation_view_main.setupWithNavController(navController) // Connecting NavigationDrawableView to navController
+
+        /*-----------------------*** To Hide and show BottomNav in these Fragment only ***------------------------*/
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.attendanceDetailFragment -> hideBottomNav()
+                R.id.studentProfileFragment -> hideBottomNav()
+                R.id.takeAttendanceFragment -> hideBottomNav()
+
+                else -> showBottomNav()
+            }
+        }
+
+        /*--------------------------------------------------------------------------------------------*/
+
 
 //        assignment_button.setOnClickListener(View.OnClickListener {
 //            Intent(this, AssignmentActivity::class.java).also {
@@ -86,6 +101,16 @@ class MainActivity : AppCompatActivity() /* , KodeinAware */ {
         } else {
             super.onBackPressed()
         }
+    }
+
+    private fun showBottomNav() {
+        bottomNavigationView.visibility = View.VISIBLE
+
+    }
+
+    private fun hideBottomNav() {
+        bottomNavigationView.visibility = View.GONE
+
     }
 
 }

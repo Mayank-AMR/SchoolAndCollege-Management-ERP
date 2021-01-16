@@ -72,6 +72,9 @@
         <action
             android:id="@+id/action_takeAttendanceFragment_to_studentProfileFragment"
             app:destination="@id/studentProfileFragment" />
+        <action
+            android:id="@+id/action_takeAttendanceFragment_to_attendanceDetailFragment"
+            app:destination="@id/attendanceDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/studentProfileFragment"
@@ -85,6 +88,6 @@
     <fragment
         android:id="@+id/attendanceDetailFragment"
         android:name="com.mayank_amr.schoolmanagementproduct.profile.attendancedetail.AttendanceDetailFragment"
-        android:label="Attendance"
+        android:label="Attendance Detail"
         tools:layout="@layout/attendance_detail_fragment" />
 </navigation>
