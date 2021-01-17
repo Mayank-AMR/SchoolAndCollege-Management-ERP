@@ -1,5 +1,7 @@
 package com.mayank_amr.schoolmanagementproduct.classattendance.attendancedata
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.mayank_amr.schoolmanagementproduct.network.MyApi
 import com.mayank_amr.schoolmanagementproduct.network.SafeApiRequest
 
@@ -10,9 +12,23 @@ import com.mayank_amr.schoolmanagementproduct.network.SafeApiRequest
 class TakeAttendanceRepository(
     private val api: MyApi
 ) : SafeApiRequest() {
-    //ToDo: need to change for attendance
-    suspend fun getStudents() = apiRequest { api.getStudentForAttendance() }
 
-    /*suspend fun submitAttendance() = apiRequest { api.submitStudentAttendence() }*/
+    suspend fun getAllClasses(): List<AllClassResponse.Data> {
+        val allClassResponse: AllClassResponse = apiRequest { api.getAllClasses() }
+        Log.d(TAG, "\n\n getAllClasses: ......................."+allClassResponse.data.size)
+        return allClassResponse.data
+
+    }
+
+
+    suspend fun getAllSectionByClassId() = apiRequest { api.getAllSectionByClassId() }
+
+
+
+    suspend fun getAllStudentsByClassAndSection() = apiRequest { api.getAllStudentsByClassAndSection() }
+
+
+
+    /*suspend fun postAttendanceRecord() = apiRequest { api.postAttendanceRecord() }*/
 
 }

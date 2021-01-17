@@ -7,7 +7,7 @@
 
         <variable
             name="students"
-            type="com.mayank_amr.schoolmanagementproduct.classattendance.attendancedata.StudentAttendanceModel" />
+            type="com.mayank_amr.schoolmanagementproduct.classattendance.attendancedata.StudentsOfClassAndSection.Data" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,10 +33,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:clickable="true"
                 android:hint="Student Name"
                 android:maxLength="18"
                 android:maxLines="1"
                 android:padding="4dp"
+                android:text="@{students.name.trim()}"
                 android:textSize="24sp"
                 tools:text="Student Name" />
 
@@ -46,23 +48,24 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="end"
                 android:orientation="horizontal"
+                android:checkedButton="1"
                 android:padding="4dp">
 
-                <CheckBox
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/light_red"
                     android:padding="4dp"
                     android:text="A" />
 
-                <CheckBox
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/light_green"
                     android:padding="4dp"
                     android:text="P" />
 
-                <CheckBox
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/light_yellow"

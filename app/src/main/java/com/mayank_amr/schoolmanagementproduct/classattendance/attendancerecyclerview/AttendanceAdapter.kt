@@ -2,12 +2,11 @@ package com.mayank_amr.schoolmanagementproduct.classattendance.attendancerecycle
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.mayank_amr.schoolmanagementproduct.R
-import com.mayank_amr.schoolmanagementproduct.classattendance.attendancedata.StudentAttendanceModel
+import com.mayank_amr.schoolmanagementproduct.classattendance.attendancedata.StudentsOfClassAndSection
 import com.mayank_amr.schoolmanagementproduct.databinding.TakeAttendanceViewBinding
 
 /**
@@ -15,7 +14,7 @@ import com.mayank_amr.schoolmanagementproduct.databinding.TakeAttendanceViewBind
  * @Created_by Mayank Kumar on 08-01-2021 12:57 PM
  */
 class AttendanceAdapter(
-    private val students: List<StudentAttendanceModel>
+    private val students: List<StudentsOfClassAndSection.Data>
 ) : RecyclerView.Adapter<AttendanceAdapter.AttendanceViewHolder>() {
 
     override fun getItemCount() = students.size
@@ -24,7 +23,7 @@ class AttendanceAdapter(
         AttendanceViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.assignment_home_view,
+                R.layout.take_attendance_view,
                 parent,
                 false
             )
@@ -33,10 +32,10 @@ class AttendanceAdapter(
     override fun onBindViewHolder(holder: AttendanceViewHolder, position: Int) {
         holder.takeAttendanceViewBinding.students = students[position]
 
-        holder.itemView.setOnClickListener { view ->
-            view.findNavController()
-                .navigate(R.id.action_assignmentHomeFragment_to_assignmentDetailFragment)
-        }
+//        holder.itemView.setOnClickListener { view ->
+//            view.findNavController()
+//                .navigate(R.id.action_assignmentHomeFragment_to_assignmentDetailFragment)
+//        }
     }
 
     inner class AttendanceViewHolder(

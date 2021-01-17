@@ -2,7 +2,9 @@ package com.mayank_amr.schoolmanagementproduct.network
 
 
 import com.mayank_amr.schoolmanagementproduct.assignment.data.repository.NewAssignmentResponse
-import com.mayank_amr.schoolmanagementproduct.classattendance.attendancedata.StudentAttendanceModel
+import com.mayank_amr.schoolmanagementproduct.classattendance.attendancedata.AllClassResponse
+import com.mayank_amr.schoolmanagementproduct.classattendance.attendancedata.ClassSections
+import com.mayank_amr.schoolmanagementproduct.classattendance.attendancedata.StudentsOfClassAndSection
 import com.mayank_amr.schoolmanagementproduct.dumywork.responce.Movie
 import com.mayank_amr.schoolmanagementproduct.profile.profiledata.User
 import okhttp3.OkHttpClient
@@ -42,8 +44,18 @@ interface MyApi {
 
 
     /*------------------------** Class Work **----------------------------------------------------*/
-//    @GET("students")
-//    suspend fun getAllStudents(): Response<StudentsResponse>
+    @GET("classes")
+    suspend fun getAllClasses(): Response<AllClassResponse>
+
+    @GET("classes/1/sections")
+    suspend fun getAllSectionByClassId(): Response<ClassSections>
+
+    @GET("classes/1/sections/1/students")
+    suspend fun getAllStudentsByClassAndSection(): Response<StudentsOfClassAndSection>
+
+//    @POST("attendance")
+//    suspend fun postAttendanceRecord(): Response<>
+
     /*--------------------------------------------------------------------------------------------*/
 
 
@@ -63,12 +75,14 @@ interface MyApi {
 //        @Field("solution_file") solutionFile: String,
 //        @Field("comment") comment: String
 //    ): Response<StudentAssignment>
+
     /*--------------------------------------------------------------------------------------------*/
 
 
-    /* -----------------------** Profile **----------------------------------------------------*/
+    /* --------------------------** Profile **----------------------------------------------------*/
     @GET("profile")
     suspend fun getProfile(): Response<User>
+
     /*--------------------------------------------------------------------------------------------*/
 
 
@@ -78,15 +92,10 @@ interface MyApi {
     /*--------------------------------------------------------------------------------------------*/
 
 
-    /*----------------------** Attendance **------------------------------------------------------*/
-    @GET("studentAttendance")
-    suspend fun getStudentForAttendance(): Response<List<StudentAttendanceModel>>
-    /*--------------------------------------------------------------------------------------------*/
-
 
     companion object {
-        private const val BASE_URL = /*"http://school-erp.herokuapp.com/"*/
-            "https://api.simplifiedcoding.in/course-apis/recyclerview/"
+        private const val BASE_URL = "http://school-erp.herokuapp.com/"
+        /*"https://api.simplifiedcoding.in/course-apis/recyclerview/"*/
 
         operator fun invoke(
             networkConnectionInterceptor: NetworkConnectionInterceptor

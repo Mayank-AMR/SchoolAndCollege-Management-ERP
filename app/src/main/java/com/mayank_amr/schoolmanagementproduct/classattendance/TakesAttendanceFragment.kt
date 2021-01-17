@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mayank_amr.schoolmanagementproduct.R
 import com.mayank_amr.schoolmanagementproduct.classattendance.attendancerecyclerview.AttendanceAdapter
@@ -18,7 +18,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 
-class TakesAttendanceFragment : Fragment(), KodeinAware, AdapterView.OnItemSelectedListener {
+class TakesAttendanceFragment : Fragment(), KodeinAware {
 
     override val kodein by kodein()
     private val factory: TakeAttendanceViewModelFactory by instance()
@@ -48,80 +48,108 @@ class TakesAttendanceFragment : Fragment(), KodeinAware, AdapterView.OnItemSelec
             recycler_view_take_attendance.also {
                 it.layoutManager = LinearLayoutManager(requireContext())
                 it.setHasFixedSize(true)
-                it.adapter = AttendanceAdapter(students)
+                it.adapter = AttendanceAdapter(students.data)
             }
         })
 
-        /*------------------** Spinner **---------------------------------------------------------*/
-        val languages = arrayOf("One", "Two", "Three", "Four", "Five", "Six")
 
-        // Create an ArrayAdapter using a simple spinner layout and array
-        val aa = activity?.let {
-            ArrayAdapter(
-                it?.applicationContext,
-                android.R.layout.simple_spinner_item,
-                languages
-            )
-        }
+        /*---------------------*** Class Spinner ***---------------------------------------------*/
+        viewModel.classes.observe(viewLifecycleOwner, Observer { classesList ->
+            val classesName = ArrayList<String>(classesList.size + 1)
+            classesName.add("select")
 
-        // Set layout to use when the list of choices appear
-        aa?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            for (element in classesList)
+                classesName.add(element.name)
 
-        // Set Adapter to Spinner
-        classes_spinner!!.adapter = aa
-
-
-
-
-        /*---------------------*** Second Spinner ***---------------------------------------------*/
-
-        val personNames = arrayOf("A", "B", "C", "D", "E", "F", "G")
-        val spinner = sections_spinner
-        if (spinner != null) {
-            val arrayAdapter = activity?.let {
-                ArrayAdapter(
-                    it,
-                    android.R.layout.simple_spinner_item,
-                    personNames
-                )
-            }
-            arrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-            spinner.adapter = arrayAdapter
-
-            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>,
-                    view: View,
-                    position: Int,
-                    id: Long
-                ) {
-                    Toast.makeText(
-                        activity,
-                        "Selected Item: " + " " + personNames[position],
-                        Toast.LENGTH_SHORT
-                    ).show()
+            val classSpinner = classes_spinner
+            if (classSpinner != null) {
+                val classesArrayAdapter = activity?.let {
+                    ArrayAdapter(
+                        it,
+                        android.R.layout.simple_spinner_item,
+                        classesName
+                    )
                 }
+                classesArrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                classSpinner.adapter = classesArrayAdapter
+                classSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>,
+                        view: View,
+                        position: Int,
+                        id: Long
+                    ) {
+                        if (position > 0) {
+//                            Toast.makeText(
+//                                activity,
+//                                "Selected Item id: " + classesList[position - 1].id,
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+                            viewModel.fetchSection(classesList[position - 1].id)
+                        }
+                    }
 
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    // Code to perform some action when nothing is selected
-                    Toast.makeText(activity, "Please select section: ", Toast.LENGTH_SHORT).show()
+                    override fun onNothingSelected(parent: AdapterView<*>) {
+                        // Code to perform some action when nothing is selected
+                        // Toast.makeText(activity, "Please select section: ", Toast.LENGTH_SHORT).show()
 
+                    }
                 }
             }
-        }
 
-
+        })
         /*----------------------------------------------------------------------------------------*/
+
+
+        /*---------------------*** Section Spinner ***--------------------------------------------*/
+        viewModel.sections.observe(viewLifecycleOwner, Observer { section ->
+
+            val sectionName = ArrayList<String>(section.data.size+1)
+            sectionName.add("select")
+
+            for (item in section.data)
+                sectionName.add(item.name)
+
+            val sectionSpinner = sections_spinner
+            if (sectionSpinner != null) {
+                val classesArrayAdapter = activity?.let {
+                    ArrayAdapter(
+                        it,
+                        android.R.layout.simple_spinner_item,
+                        sectionName
+                    )
+                }
+                classesArrayAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                sectionSpinner.adapter = classesArrayAdapter
+                sectionSpinner.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>,
+                            view: View,
+                            position: Int,
+                            id: Long
+                        ) {
+                            if (position > 0) {
+                                viewModel.fetchStudentsOfSection(section.data[position - 1].id, 2)
+                            }
+                        }
+
+                        override fun onNothingSelected(parent: AdapterView<*>) {
+                            // Code to perform some action when nothing is selected
+                        }
+                    }
+            }
+        })
+
     }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        Toast.makeText(activity, "position: " + position, Toast.LENGTH_SHORT).show();
+    fun studentDetail(){
+        findNavController().navigate(
+            R.id.action_homeFragment_to_takeAttendanceFragment,
+            null,
+            null,
+            null
+        )
     }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        Toast.makeText(activity, "Nothing Selected ", Toast.LENGTH_SHORT).show();
-    }
-
 
 }
